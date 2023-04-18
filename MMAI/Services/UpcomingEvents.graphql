@@ -1,0 +1,14 @@
+query UpcomingEvents {
+    upcomingEvents {
+        eventName
+        location
+        date
+        fights{
+            fighter1
+            fighter2
+            weightClass
+            redImage
+            blueImage
+        }
+    }
+}

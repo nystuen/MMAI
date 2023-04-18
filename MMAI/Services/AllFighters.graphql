@@ -1,0 +1,6 @@
+query AllFighters {
+    allFighters {
+        name
+        image
+    }
+}

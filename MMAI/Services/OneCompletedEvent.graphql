@@ -1,0 +1,39 @@
+query OneCompletedEvent($eventName: String!, $date: String!){
+    oneCompletedEvent(eventName: $eventName, date: $date){
+        redName
+        blueName
+        referee
+        time
+        method
+        weightClass
+        round
+        winner
+        eventName
+        redImage
+        blueImage
+        totalRed
+        totalBlue
+        strikesRed
+        strikesBlue
+        tdRed
+        tdBlue
+        passRed
+        passBluex 
+        revRed
+        revBlue
+        subRed
+        subBlue
+        clinchRed
+        clinchBlue
+        groundRed
+        groundBlue
+        distanceRed
+        distanceBlue
+        headRed
+        headBlue
+        bodyRed
+        bodyBlue
+        legRed
+        legBlue
+    }
+}

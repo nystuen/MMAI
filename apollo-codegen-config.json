@@ -1,0 +1,29 @@
+{
+  "schemaName" : "schemaAPI",
+  "input" : {
+    "operationSearchPaths" : [
+      "**/*.graphql"
+    ],
+    "schemaSearchPaths" : [
+      "**/*.graphqls"
+    ]
+  },
+  "output" : {
+    "testMocks" : {
+      "none" : {
+      }
+    },
+    "schemaTypes" : {
+      "path" : "./MMAI/Services/schemaAPI",
+      "moduleType" : {
+        "embeddedInTarget" : {
+          "name" : "MMAI"
+        }
+      }
+    },
+    "operations" : {
+      "inSchemaModule" : {
+      }
+    }
+  }
+}

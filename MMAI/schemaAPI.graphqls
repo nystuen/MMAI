@@ -1,0 +1,151 @@
+"""
+The `@defer` directive may be provided for fragment spreads and inline fragments to inform the executor to delay the execution of the current fragment to indicate deprioritization of the current fragment. A query with `@defer` directive will cause the request to potentially return multiple responses, where non-deferred data is delivered in the initial response and data deferred is delivered in a subsequent response. `@include` and `@skip` take precedence over `@defer`.
+"""
+directive @defer(
+  """
+  If this argument label has a value other than null, it will be passed on to the result of this defer directive. This label is intended to give client applications a way to identify to which fragment a deferred result belongs to.
+  """
+  label: String
+
+  """
+  Deferred when true.
+  """
+  if: Boolean
+) on FRAGMENT_SPREAD | INLINE_FRAGMENT
+
+"""
+The `@stream` directive may be provided for a field of `List` type so that the backend can leverage technology such as asynchronous iterators to provide a partial list in the initial response, and additional list items in subsequent responses. `@include` and `@skip` take precedence over `@stream`.
+"""
+directive @stream(
+  """
+  If this argument label has a value other than null, it will be passed on to the result of this stream directive. This label is intended to give client applications a way to identify to which fragment a streamed result belongs to.
+  """
+  label: String
+
+  """
+  The initial elements that shall be send down to the consumer.
+  """
+  initialCount: Int! = 0
+
+  """
+  Streamed when true.
+  """
+  if: Boolean
+) on FIELD
+
+type Query {
+  oneFighter(name: String!): FighterType!
+  allFighters: [FighterType!]!
+  predictedWinner(redName: String!, blueName: String!): PredictedWinnerType!
+  upcomingEvents: [UpcomingEventType!]!
+  completedEvents: [CompletedEventType!]!
+  oneCompletedEvent(eventName: String!, date: String!): [MatchHistoryType!]!
+}
+
+type Mutation {
+  contactUs(
+    name: String!
+    from: String!
+    subject: String!
+    text: String!
+  ): Boolean!
+  scrapeUpcomingEvents: Boolean!
+}
+
+type PredictedWinnerType {
+  name: String!
+  prob: Float!
+}
+
+type FighterType {
+  name: String
+  nickname: String
+  height: String
+  heightCm: Float!
+  weight: Int
+  weightKg: Float!
+  weightClass: String
+  reach: Int
+  reachCm: Float
+  stance: String
+  birth: String
+  slpm: Float
+  strikesAccuracy: Int
+  sapm: Float
+  strikesDefence: Float
+  takedownAverage: Float
+  takedownAccuracy: Int
+  takedownDefence: Int
+  submissionAverage: Float
+  record: String
+  imageArray: [String]!
+  image: String
+  matchHistory: [MatchHistoryType!]!
+}
+
+type UpcomingEventType {
+  eventName: String
+  location: String
+  date: String
+  fights: [UpcomingFightType!]!
+}
+
+type CompletedEventType {
+  eventName: String
+  date: String
+  fights: [MatchHistoryType!]!
+}
+
+type MatchHistoryType {
+  eventName: String
+  redName: String
+  redResult: String
+  blueName: String
+  blueResult: String
+  weightClass: String
+  method: String
+  round: String
+  time: String
+  timeFormat: String
+  referee: String
+  details: String
+  strikesRed: String
+  strikesBlue: String
+  totalRed: String
+  totalBlue: String
+  tdRed: String
+  tdBlue: String
+  subRed: String
+  subBlue: String
+  passRed: String
+  passBlue: String
+  revRed: String
+  revBlue: String
+  headRed: String
+  headBlue: String
+  bodyRed: String
+  bodyBlue: String
+  legRed: String
+  legBlue: String
+  distanceRed: String
+  distanceBlue: String
+  clinchRed: String
+  clinchBlue: String
+  groundRed: String
+  groundBlue: String
+  winner: String
+  redImage: String
+  blueImage: String
+  date: String
+}
+
+type UpcomingFightType {
+  eventName: String
+  date: String
+  location: String
+  fighter1: String
+  fighter2: String
+  weightClass: String
+  redImage: String
+  blueImage: String
+}

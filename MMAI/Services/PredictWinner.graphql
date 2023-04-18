@@ -1,0 +1,7 @@
+query PredictWinner($redName: String!, $blueName: String!){
+    predictedWinner(redName: $redName, blueName: $blueName) {
+        name
+        prob
+    }
+}
+
