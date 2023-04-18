@@ -56,16 +56,8 @@ class AthleteService {
     }
     
     func predictWinner(athleteA: Athlete, athleteB: Athlete) {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2.5) {
-            self.predictionResult = .success(PredictionData(name: athleteA.name, prob: Double.random(in: 59.0..<72.0)))
-        }
-        
-        
-       /*
         NetworkingManager.shared.predictWinner(athleteA: athleteA, athleteB: athleteB) { [weak self] result in
            self?.predictionResult = PredictionResult.process(queryData: result)
         }
-        */
-         
     }
 }
